@@ -1,0 +1,46 @@
+img[src*="#profile"] {
+   object-fit: cover;
+   width:200px;
+   height:200px;
+   border-radius:50%;
+}
+
+img[src*="#supporter1"] {
+   object-fit: scale-down;
+   height:150px;
+   width:400px;
+}
+img[src*="#supporter2"] {
+   object-fit: scale-down;
+   height:100px;
+   width:300px;
+}
+img[src*="#supporter3"] {
+   object-fit: scale-down;
+   height:125px;
+   width:200px;
+}
+img[src*="#sampledata"] {
+   object-fit: scale-down;
+   max-width: 60%;
+}
+img[src*="#samplephoto"] {
+   object-fit: scale-down;
+   max-width: 30%;
+}
+
+
+a.anchor {
+    display: block;
+    position: relative;
+    top: -100px;
+    visibility: hidden;
+}
+
+.mbtablestyle {
+        border-collapse: collapse;
+
+   > table, td, th {
+        border: 1px solid black;
+        }
+}
