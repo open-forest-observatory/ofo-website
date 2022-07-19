@@ -94,7 +94,7 @@ copyright = "Open Forest Observatory"
 #privacy_policy = "https://policies.google.com/privacy"
 
 # First one is picked as the Twitter card image if not set on page.
-# images = ["images/project-illustration.png"]
+images = ["/twitter-card/featured-background.JPG"]
 
 # Menu title if your navbar has a versions selector to access old versions of your site.
 # This menu appears only if you have at least one [params.versions] set.
@@ -173,8 +173,8 @@ enable = false
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
 [[params.links.user]]
   name = "Community forum"
-  url = "https://example.org/mail" #! TODO link to github community
-  icon = "fa fa-envelope" #! better icon
+  url = "https://github.com/orgs/open-forest-observatory/discussions"
+  icon = "fa fa-comments"
   desc = "Discussion and help from OFO staff and fellow users"
 # [[params.links.user]]
 #   name ="Twitter"
@@ -189,7 +189,7 @@ enable = false
 
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 [[params.links.developer]]
-  name = "GitHub"
+  name = "OFO GitHub"
   url = "https://github.com/open-forest-observatory"
   icon = "fab fa-github"
   desc = "Development takes place here!"
