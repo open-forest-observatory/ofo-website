@@ -5,13 +5,11 @@ linkTitle: "Examples"
 weight: 3
 date: 2017-01-05
 description: >
-  See your project in action!
+  Here we will show you the OFO in action!
 ---
 
 {{% pageinfo %}}
-This is a placeholder page that shows you how to use this template site.
+This is a placeholder for our documentation site. We will build out the documentation as we develop the OFO tools.
 {{% /pageinfo %}}
-
-Do you have any example **applications** or **code** for your users in your repo or elsewhere? Link to your examples here.
 
 
