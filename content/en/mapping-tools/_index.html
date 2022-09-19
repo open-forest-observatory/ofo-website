@@ -1,0 +1,114 @@
+---
+title: Drone-based forest mapping tools
+linkTitle: Tools
+
+menu:
+  main:
+    weight: 5
+
+---
+<link rel="stylesheet" href="/styles.css">
+<script src="https://kit.fontawesome.com/0319741903.js" crossorigin="anonymous"></script>
+
+{{% blocks/section %}}
+<div class="container text-center">
+<h1 class="display-1 mt-0 mt-md-5 pb-4">Forest mapping tools</h1>
+<br>
+</div>
+
+
+<div class="container">
+
+<br>
+
+  We are developing an open-source, automated workflow for producing high-accuracy, spatially extensive (10-300 ha) maps of forest stands at the individual tree level using drone imagery. Our workflow enables mapping of > 300 ha of forest area in only 5 days of a single technician's time (including collection of drone imagery using a single consumer drone and imagery processing). Watch this space and our [<i class="fab fa-github"></i> software library](https://github.com/ucdavis/metashape) for software development progress and software releases. The workflow has several steps:
+
+  ### 1. Image collection and photogrammetry
+  
+  A drone pilot collects many partially overlapping drone photos across the site. This means any given tree appears in many photos, each from a slightly different angle.
+  
+  <br>
+  
+  ![Photogrammetry](photogrammetry.jpg#figure)
+
+  <br>
+
+  Because each tree is visible from multiple angles, it is possible to use methods related to stereo vision (more generally known as *photogrammetry*) to estimate each tree's 3D structure. The photogrammetry algorithm produces a 3D cloud of points that is very similar to lidar data.
+  
+  <br>
+
+  ![Lidar](lidar.PNG#figure)
+  
+  <br>
+
+  The photogrammetry algorithm is also used to produce an orthomosaic, which is a high-resolution aerial image produced by stitching together the numerous drone photos. It resembles NAIP or Google Earth imagery but is generally much higher resolution (~ 3 cm).
+  
+  Photogrammetric processing requires parameterization for the specific application. We have thoroughly tested parameterizations for individual tree detection in structurally complex conifer forests and published our results, including recommended parameter values, in [<i class="fa-regular fa-file-lines"></i> Methods in Ecology and Evolution](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13860). We have also built and continue to maintain a [<i class="fab fa-github"></i> software library](https://github.com/ucdavis/metashape) that makes it easy to run multiple photogrammetry workflows with pre-specified parameterizations in a documented, reproducible way.
+  
+  ### 2. Canopy height model (CHM) production
+  
+  After creation of a point cloud, we process it to compute a digital surface model (DSM). The DSM is a high-resolution (~10-cm) raster indicating the elevation of the vegetation (or ground) surface in each pixel. Then, we subtract elevation values from a high-resolution digital elevation model (DEM). The result is a canopy height model (CHM) indicating the height of the vegetation above the ground in each pixel.
+  
+  
+  ### 3. Tree detection
+  
+  Next, using an algorithm such as the variable-window filter implemented in the [ForestTools](https://cran.r-project.org/web/packages/ForestTools/) R package, we detect individual tree tops, and their associated heights, from the canopy height model. The selection and parameterization of the optimal tree detection algorithm is a complex process and can depend on the approach used for drone imagery collection and processing. We have evaluated the interactions between these choices and identified an optimal tree detection method and parameterization. The results are published in [<i class="far fa-file-lines"></i> Methods in Ecology and Evolution](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13860).
+
+  <br>
+
+  <div class="row text-center">
+    <div class="col-sm-6">
+      
+![DSM](1-dsm.png#figure-full)
+
+<div class="figure-caption">Digital surface model</div>
+<br>
+    
+    </div>
+    <div class="col-sm-6">
+
+![CHM](2-chm.png#figure-full)
+
+<div class="figure-caption">Canopy height model</div>
+<br>
+
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-sm-6">
+
+![ortho](3-orthomosaic.png#figure-full)
+
+<div class="figure-caption">Orthomosaic</div>
+<br>
+      
+    </div>
+    <div class="col-sm-6">
+
+![stem-map](4-stem-map.png#figure-full)
+
+<div class="figure-caption">Treetops, with point size proportional to tree height, overlaid on orthomosaic</div>
+<br>
+      
+    </div>
+  </div>
+
+  
+  ### 4. Tree species identification
+  
+  After identifying the locations and sizes of individual trees, the next step is to identify each tree taxonomically. We are building an AI-based computer vision approach to classify the drone-derived images of each tree into species categories. We take advantage of the fact that each tree appears in dozens to hundreds of individual drone images, allowing us to use the multiple viewing angles to more confidently identify the tree to species. This approach is known as multi-view computer vision.
+  
+  <br>
+
+  ![Workflow](multiview-species-id.png#figure)
+
+  <div class="figure-caption">
+  Workflow for programmatically isolating images of individual detected trees for AI-based species identification. (1) The tree is detected using the CHM, orthomosaic, and/or point cloud. (2) The top and bottom of the tree are projected from 3D space onto the drone photo. (3) The tree top and bottom are used to create a bounding box to crop the single tree from the image. (4) The process is repeated for every drone image in which the focal tree appears. The resulting images are supplied to the computer vision image classification algorithm.
+  </div>
+
+
+
+
+</div>
+
+{{% /blocks/section %}}

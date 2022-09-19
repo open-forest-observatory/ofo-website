@@ -24,9 +24,27 @@ img[src*="#sampledata"] {
    object-fit: scale-down;
    max-width: 60%;
 }
-img[src*="#samplephoto"] {
+img[src*="#figure"] {
+   display: block;
    object-fit: scale-down;
-   max-width: 30%;
+   max-width: 75%;
+   margin-left: auto;
+   margin-right: auto;
+}
+img[src*="#figure-full"] {
+   display: block;
+   object-fit: scale-down;
+   max-width: 100%;
+   margin-left: auto;
+   margin-right: auto;
+}
+.figure-caption {
+   display: block;
+   object-fit: scale-down;
+   max-width: 75%;
+   margin-left: auto;
+   margin-right: auto;
+   color: white;
 }
 
 
