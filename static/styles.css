@@ -24,6 +24,10 @@ img[src*="#sampledata"] {
    object-fit: scale-down;
    max-width: 60%;
 }
+img[src*="#samplephoto"] {
+   object-fit: scale-down;
+   max-width: 30%;
+}
 img[src*="#figure"] {
    display: block;
    object-fit: scale-down;
