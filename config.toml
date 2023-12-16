@@ -222,4 +222,4 @@ enable = false
 [[menu.main]]
     name = "Docs"
     weight = 20
-    url = "docs.openforestobservatory.org"
+    url = "https://docs.openforestobservatory.org"
